@@ -1,0 +1,60 @@
+<SerialDevice name="TKB_STH060_600">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>   	
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">TURIN_Joint.lua</Property>
+        <Property name="RobotType" desc="robot type">SCARA</Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="266" offset="0" type="craig"></DHJoint>   
+
+    <DHJoint name="Joint2" alpha="0" a="300" d="0" offset="0" type="craig"></DHJoint>  
+
+	 <Joint name="Joint3" type="Prismatic">
+       <RPY> 0 0 0 </RPY> <Pos> 300 0 0 </Pos>
+     </Joint>
+    <DHJoint name="Joint4" alpha="0" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint4" >
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0 </Pos>
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-135" max="135" />   
+    <PosLimit refjoint="Joint2" min="-135" max="135" />
+    <PosLimit refjoint="Joint3" min="-200" max="0" />
+    <PosLimit refjoint="Joint4" min="-360" max="360" />
+
+
+    <VelLimit refjoint="Joint1" max="140" />
+    <VelLimit refjoint="Joint2" max="150" />
+    <VelLimit refjoint="Joint3" max="160" />
+    <VelLimit refjoint="Joint4" max="320" />
+
+    <AccLimit refjoint="Joint1" max="120" />
+    <AccLimit refjoint="Joint2" max="120" />
+    <AccLimit refjoint="Joint3" max="120" />
+    <AccLimit refjoint="Joint4" max="120" />
+
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/TURIN/TKB_STH060_600F/Geometry/base" unit="MM" color="247 210 9"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -266</Pos>
+        <Polytope file="../RobotData/TURIN/TKB_STH060_600F/Geometry/joint1" unit="MM" color="0 210 9"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 0 0 0 </RPY> <Pos> -300 0 -266 </Pos>
+        <Polytope file="../RobotData/TURIN/TKB_STH060_600F/Geometry/joint2" unit="MM" color="15 125 172"/></Drawable>
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> 0 0 0 </RPY> <Pos> -600 0 -266</Pos>
+        <Polytope file="../RobotData/TURIN/TKB_STH060_600F/Geometry/joint3" unit="MM" color="246 140 42"/></Drawable>
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 0 0 0 </RPY> <Pos> -600 0 -266 </Pos>
+        <Polytope file="../RobotData/TURIN/TKB_STH060_600F/Geometry/joint4" unit="MM" color="177 195 0"/></Drawable>
+ 
+
+    <CollisionSetup file="../RobotData/TURIN/TKB_STH060_600F/CollisionSetup.xml" />
+
+
+</SerialDevice>

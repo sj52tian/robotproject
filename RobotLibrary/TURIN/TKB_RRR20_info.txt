@@ -1,0 +1,2 @@
+Handling Capacity: x kg
+Reach Capacity: x m

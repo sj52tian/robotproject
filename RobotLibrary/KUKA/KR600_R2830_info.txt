@@ -1,0 +1,2 @@
+Handling Capacity: 600.0 kg
+Reach Capacity: 2.826 m

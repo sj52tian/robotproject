@@ -1,0 +1,73 @@
+<SerialDevice name="M-20iA">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">FANUC.lua</Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="525.0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="-90" a="150" d="0" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="180" a="790" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="-90" a="250" d="-835" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="90" a="0" d="0" offset="-0.0095" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="-90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" > <!--缺少数据，现场测试方向是否正确，现设置为z轴朝向机器人外侧，x轴向上-->
+        <RPY> 0 0 180 </RPY> <Pos> 0 0 -100 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-170" max="170" />   
+    <PosLimit refjoint="Joint2" min="-100" max="160" /> <!--缺少数据，现场测试-->
+    <PosLimit refjoint="Joint3" min="-180" max="278" /> <!--缺少数据，现场测试-->
+    <PosLimit refjoint="Joint4" min="-200" max="200" />
+    <PosLimit refjoint="Joint5" min="-180" max="180" /> 
+    <PosLimit refjoint="Joint6" min="-450" max="450" />
+
+    <VelLimit refjoint="Joint1" max="195" />
+    <VelLimit refjoint="Joint2" max="175" />
+    <VelLimit refjoint="Joint3" max="180" /> 
+    <VelLimit refjoint="Joint4" max="360" />
+    <VelLimit refjoint="Joint5" max="360" />
+    <VelLimit refjoint="Joint6" max="550" />
+
+    <!--<AccLimit refjoint="Joint1" max="120" />
+    <AccLimit refjoint="Joint2" max="120" />
+    <AccLimit refjoint="Joint3" max="120" /> 
+    <AccLimit refjoint="Joint4" max="120" />
+    <AccLimit refjoint="Joint5" max="120" />
+    <AccLimit refjoint="Joint6" max="120" />-->
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/Fanuc/M-20iA/Geometry/base" unit="MM" color="40 40 40"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -525.0 </Pos>
+        <Polytope file="../RobotData/Fanuc/M-20iA/Geometry/joint1" unit="MM" color="255 223 61"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 90 0 90 </RPY> <Pos> -525 -150 0 </Pos>
+        <Polytope file="../RobotData/Fanuc/M-20iA/Geometry/joint2" unit="MM" color="255 223 61"/></Drawable>    
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> -90 0 -90 </RPY> <Pos> -1315 150 0</Pos>
+        <Polytope file="../RobotData/Fanuc/M-20iA/Geometry/joint3" unit="MM" color="255 223 61"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 0 90 0 </RPY> <Pos> -1565 0 985 </Pos>
+        <Polytope file="../RobotData/Fanuc/M-20iA/Geometry/joint4" unit="MM" color="255 223 61"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> -90 0 -90 </RPY> <Pos> -1565 985 0.0</Pos>  
+        <Polytope file="../RobotData/Fanuc/M-20iA/Geometry/joint5" unit="MM" color="255 223 61"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 0 90 0 </RPY> <Pos> -1565 -0.0 985 </Pos>  
+        <Polytope file="../RobotData/Fanuc/M-20iA/Geometry/joint6" unit="MM" color="0 43 54"/></Drawable>
+
+    <CollisionSetup file="../RobotData/Fanuc/M-20iA/CollisionSetup.xml" />
+
+    <!--Q name="Home">0 0 -1.5707963  0 0 0</Q-->
+    <Q name="Home">0 0 0 0 0 0</Q>
+
+</SerialDevice>

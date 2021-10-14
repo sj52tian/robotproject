@@ -1,0 +1,2 @@
+Handling Capacity: 20 kg
+Reach Capacity: 1800 mm

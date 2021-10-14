@@ -1,0 +1,62 @@
+<SerialDevice name="MS165">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 650</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="-90" a="325" d="0" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="180" a="1150" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="-90" a="300" d="-1225" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5" alpha="90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="90" a="0" d="250" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" >
+        <RPY> 360 0 0 </RPY> <Pos> 0 0 0 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-175" max="175" />
+    <PosLimit refjoint="Joint2" min="-100" max="100" />
+    <PosLimit refjoint="Joint3" min="-170" max="85" />
+    <PosLimit refjoint="Joint4" min="-160" max="175" />
+    <PosLimit refjoint="Joint5" min="-120" max="120" />
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <VelLimit refjoint="Joint1" max="197" />
+    <VelLimit refjoint="Joint2" max="175" />
+    <VelLimit refjoint="Joint3" max="187" /> 
+    <VelLimit refjoint="Joint4" max="400" />
+    <VelLimit refjoint="Joint5" max="400" />
+    <VelLimit refjoint="Joint6" max="600" />
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -650 </Pos>
+        <Polytope file="../RobotData/Yaskawa/MS165/Geometry/base" unit="MM" color="40 120 255"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -650 </Pos>
+        <Polytope file="../RobotData/Yaskawa/MS165/Geometry/joint1" unit="MM" color="40 120 255"/></Drawable>
+    <Drawable name="Joint2Geo" refframe="Joint2">
+        <RPY> 90 0 90 </RPY> <Pos> -650 -325 0</Pos>
+        <Polytope file="../RobotData/Yaskawa/MS165/Geometry/joint2" unit="MM" color="40 120 255"/></Drawable>
+     <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> -90 0 -90 </RPY> <Pos> -1800 325 0 </Pos>
+        <Polytope file="../RobotData/Yaskawa/MS165/Geometry/joint3" unit="MM" color="40 120 255"/></Drawable>
+     <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 0 90 0 </RPY> <Pos> -2100 0 1550 </Pos>
+        <Polytope file="../RobotData/Yaskawa/MS165/Geometry/joint4" unit="MM" color="40 120 255"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> -90 0 -90 </RPY> <Pos> -2100 1550 0 </Pos>  
+        <Polytope file="../RobotData/Yaskawa/MS165/Geometry/joint5" unit="MM" color="40 120 255"/></Drawable>
+     <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 180 -90 0 </RPY> <Pos> -2100 0 -1800 </Pos>  
+        <Polytope file="../RobotData/Yaskawa/MS165/Geometry/joint6" unit="MM" color="0 43 54"/></Drawable>
+     
+  <CollisionSetup file="../RobotData/Yaskawa/MS165/CollisionSetup.xml" />
+
+ </SerialDevice>

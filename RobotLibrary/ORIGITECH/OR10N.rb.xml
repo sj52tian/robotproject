@@ -1,0 +1,68 @@
+<!--Joint3正负限位参数会导致碰撞-->
+<!--Joint5正负转向有待确定，若修改，需校核Joint6位姿-->
+
+<SerialDevice name="OR10N">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> -90 0 0 </RPY> <Pos> 0 0 430</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">Kawasaki.lua</Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="180" a="0" d="0" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="90" a="100" d="0" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="180" a="650" d="0" offset="90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="90" a="0" d="700" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5" alpha="-90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="90" a="0" d="88" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" >
+        <RPY> 90 0 0 </RPY> <Pos> 0 0 0 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-180" max="180" />
+    <PosLimit refjoint="Joint2" min="-105" max="145" />
+    <PosLimit refjoint="Joint3" min="-163" max="150" />
+    <PosLimit refjoint="Joint4" min="-270" max="270" />
+    <PosLimit refjoint="Joint5" min="-145" max="145" />
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <VelLimit refjoint="Joint1" max="250" />
+    <VelLimit refjoint="Joint2" max="250" />
+    <VelLimit refjoint="Joint3" max="215" /> 
+    <VelLimit refjoint="Joint4" max="365" />
+    <VelLimit refjoint="Joint5" max="380" />
+    <VelLimit refjoint="Joint6" max="700" />
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 90 0 0 </RPY> <Pos> 0 0 -430 </Pos>
+        <Polytope file="../RobotData/ORIGITECH/OR10N/Geometry/base" unit="MM" color="255 255 224"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 180 </RPY> <Pos> 0 0 430 </Pos>
+        <Polytope file="../RobotData/ORIGITECH/OR10N/Geometry/joint1" unit="MM" color="255 255 224"/></Drawable>
+    <Drawable name="Joint2Geo" refframe="Joint2">
+        <RPY> 90 0 90 </RPY> <Pos> -430 -100 0</Pos>
+        <Polytope file="../RobotData/ORIGITECH/OR10N/Geometry/joint2" unit="MM" color="255 255 224"/></Drawable>
+     <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> -90 0 -90 </RPY> <Pos> -1080 100 -4 </Pos>
+        <Polytope file="../RobotData/ORIGITECH/OR10N/Geometry/joint3" unit="MM" color="255 255 224"/></Drawable>
+     <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 0 -90 180 </RPY> <Pos> -1080 -4 -800 </Pos>
+        <Polytope file="../RobotData/ORIGITECH/OR10N/Geometry/joint4" unit="MM" color="255 255 224"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> -90 0 -90 </RPY> <Pos> -1080 800 -4 </Pos>  
+        <Polytope file="../RobotData/ORIGITECH/OR10N/Geometry/joint5" unit="MM" color="255 255 224"/></Drawable>
+     <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 0 -90 180 </RPY> <Pos> -1080 -4 -888 </Pos>  
+        <Polytope file="../RobotData/ORIGITECH/OR10N/Geometry/joint6" unit="MM" color="0 43 54"/></Drawable>
+     
+  <CollisionSetup file="../RobotData/ORIGITECH/OR10N/CollisionSetup.xml" />
+  
+  <Q name="Home">0 0 -1.570796 0 0 0</Q>
+
+ </SerialDevice>

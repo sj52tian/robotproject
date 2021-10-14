@@ -1,0 +1,66 @@
+<SerialDevice name="C4-A601S">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">EPSON.lua</Property>
+        <Property name="DeviceId" desc="The id to distinguish this device to others"> C4-A601S </Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="320" offset="90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="90" a="100" d="0" offset="90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="0" a="250" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="-90" a="0" d="-250" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="-90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" >
+        <RPY> 0 0 180 </RPY> <Pos> 0 0 -65 </Pos>
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-170" max="170" />
+    <PosLimit refjoint="Joint2" min="-160" max="65" />
+    <PosLimit refjoint="Joint3" min="-51" max="225" />
+    <PosLimit refjoint="Joint4" min="-200" max="200" />
+    <PosLimit refjoint="Joint5" min="-135" max="135" />
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <VelLimit refjoint="Joint1" max="450" />
+    <VelLimit refjoint="Joint2" max="450" />
+    <VelLimit refjoint="Joint3" max="514" /> 
+    <VelLimit refjoint="Joint4" max="555" />
+    <VelLimit refjoint="Joint5" max="555" />
+    <VelLimit refjoint="Joint6" max="720" />
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/EPSON/C4-A601S/Geometry/base" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> -90 0 0 </RPY> <Pos> 0 0 -320 </Pos>
+        <Polytope file="../RobotData/EPSON/C4-A601S/Geometry/joint1" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 0 -90 180 </RPY> <Pos> -320 100 0 </Pos>
+        <Polytope file="../RobotData/EPSON/C4-A601S/Geometry/joint2" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> 0 -90 180 </RPY> <Pos> -570 100 0</Pos>
+        <Polytope file="../RobotData/EPSON/C4-A601S/Geometry/joint3" unit="MM" color="245 245 245"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> -90 0 -90 </RPY> <Pos> -570 0 350 </Pos>
+        <Polytope file="../RobotData/EPSON/C4-A601S/Geometry/joint4" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> 0 -90 180 </RPY> <Pos> -570 350 0</Pos>
+        <Polytope file="../RobotData/EPSON/C4-A601S/Geometry/joint5" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> -90 0 -90 </RPY> <Pos> -570 0 350 </Pos>
+        <Polytope file="../RobotData/EPSON/C4-A601S/Geometry/joint6" unit="MM" color="245 245 245"/></Drawable>
+
+    <CollisionSetup file="../RobotData/EPSON/C4-A601S/CollisionSetup.xml" />
+
+    <Q name="Home">0 0 0 0 0 0</Q>
+
+</SerialDevice>

@@ -1,0 +1,74 @@
+<SerialDevice name="GBT_P7A">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">jiebote.lua</Property>
+        <Property name="DeviceId" desc="The id to distinguish this device to others"> GBT_P7A </Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="365" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="90" a="30" d="0" offset="90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="0" a="340" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="90" a="35" d="350" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="-90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="90" a="0" d="96.5" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" >
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-170" max="170" />   
+    <PosLimit refjoint="Joint2" min="-135" max="100" />
+    <PosLimit refjoint="Joint3" min="-70" max="200" />
+    <PosLimit refjoint="Joint4" min="-190" max="190" />
+    <PosLimit refjoint="Joint5" min="-115" max="115" />
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <VelLimit refjoint="Joint1" max="170" />
+    <VelLimit refjoint="Joint2" max="150" />
+    <VelLimit refjoint="Joint3" max="160" /> 
+    <VelLimit refjoint="Joint4" max="300" />
+    <VelLimit refjoint="Joint5" max="320" />
+    <VelLimit refjoint="Joint6" max="360" />
+
+    <!--<AccLimit refjoint="Joint1" max="120" />
+    <AccLimit refjoint="Joint2" max="120" />
+    <AccLimit refjoint="Joint3" max="120" /> 
+    <AccLimit refjoint="Joint4" max="120" />
+    <AccLimit refjoint="Joint5" max="120" />
+    <AccLimit refjoint="Joint6" max="120" />-->
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/捷勃特/GBT_P7A/Geometry/base" unit="MM" color="254 222 65"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -365 </Pos>
+        <Polytope file="../RobotData/捷勃特/GBT_P7A/Geometry/joint1" unit="MM" color="254 222 65"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> -90 0 -90 </RPY> <Pos> -365 30 0 </Pos>
+        <Polytope file="../RobotData/捷勃特/GBT_P7A/Geometry/joint2" unit="MM" color="254 222 65"/></Drawable>    
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> -90 0 -90 </RPY> <Pos> -705 30 0</Pos>
+        <Polytope file="../RobotData/捷勃特/GBT_P7A/Geometry/joint3" unit="MM" color="254 222 65"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 180 -90 0 </RPY> <Pos> -740 0 -380 </Pos>
+        <Polytope file="../RobotData/捷勃特/GBT_P7A/Geometry/joint4" unit="MM" color="254 222 65"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> -90 0 -90 </RPY> <Pos> -740 380 0</Pos>  
+        <Polytope file="../RobotData/捷勃特/GBT_P7A/Geometry/joint5" unit="MM" color="254 222 65"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 180 -90 0 </RPY> <Pos> -740 0 -476.5 </Pos>  
+        <Polytope file="../RobotData/捷勃特/GBT_P7A/Geometry/joint6" unit="MM" color="0 43 54"/></Drawable>
+
+    <CollisionSetup file="../RobotData/捷勃特/GBT_P7A/CollisionSetup.xml" />
+
+    <!--Q name="Home">0 0 -1.5707963  0 0 0</Q-->
+    <Q name="Home">0 0 0 0 0 0</Q>
+
+</SerialDevice>

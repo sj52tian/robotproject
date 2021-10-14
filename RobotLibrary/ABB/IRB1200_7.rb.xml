@@ -1,0 +1,66 @@
+<SerialDevice name="IRB1200_7">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">ABB.lua</Property>
+        <Property name="DeviceId" desc="The id to distinguish this device to others"> IRB1200_7 </Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="399.1" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="-90" a="0" d="0" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="0" a="350" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="-90" a="42" d="351" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="-90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" >
+        <RPY> 180 0 0 </RPY> <Pos> 0 0 82 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-170" max="170" />
+    <PosLimit refjoint="Joint2" min="-100" max="135" />
+    <PosLimit refjoint="Joint3" min="-200" max="70" />
+    <PosLimit refjoint="Joint4" min="-270" max="270" />
+    <PosLimit refjoint="Joint5" min="-130" max="130" />
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <VelLimit refjoint="Joint1" max="288" />
+    <VelLimit refjoint="Joint2" max="240" />
+    <VelLimit refjoint="Joint3" max="300" /> 
+    <VelLimit refjoint="Joint4" max="400" />
+    <VelLimit refjoint="Joint5" max="405" />
+    <VelLimit refjoint="Joint6" max="600" />
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/ABB/IRB_1200_7/Geometry/base" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -399.1 </Pos>
+        <Polytope file="../RobotData/ABB/IRB_1200_7/Geometry/joint1" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 90 0 90 </RPY> <Pos> -399.1 0 0 </Pos>
+        <Polytope file="../RobotData/ABB/IRB_1200_7/Geometry/joint2" unit="MM" color="245 245 245"/></Drawable>    
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> 90 0 90 </RPY> <Pos> -749.1 0 0</Pos>
+        <Polytope file="../RobotData/ABB/IRB_1200_7/Geometry/joint3" unit="MM" color="245 245 245"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 0 -90 180 </RPY> <Pos> -791.1 0 -351 </Pos>
+        <Polytope file="../RobotData/ABB/IRB_1200_7/Geometry/joint4" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> 90 0 90 </RPY> <Pos> -791.1 -351 0</Pos>  
+        <Polytope file="../RobotData/ABB/IRB_1200_7/Geometry/joint5" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 0 -90 180 </RPY> <Pos> -791.1 0 -351 </Pos>  
+        <Polytope file="../RobotData/ABB/IRB_1200_7/Geometry/joint6" unit="MM" color="0 43 54"/></Drawable>
+
+    <CollisionSetup file="../RobotData/ABB/IRB_1200_7/CollisionSetup.xml" />
+
+    <Q name="Home">0 0 0 0 0 0</Q>
+
+</SerialDevice>

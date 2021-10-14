@@ -1,0 +1,84 @@
+<TreeDevice name="5Axis_XZ_YBC">
+    <Frame name="Device_Base" type="Movable">
+    <RPY> 0 0 0 </RPY> <Pos> 0 0 821</Pos> 
+    <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+	<Property name="RobotType" desc="robot type">ORIG</Property>
+	<Property name="DeviceId" desc="The id to distinguish this device to others"> 5Axis_XZ_YBC </Property>
+	<Property name="PostProcess" desc=" lua">Kawasaki.lua</Property>
+    </Frame>
+	
+    <Joint name="Joint_X" refframe="Device_Base" type="Prismatic">
+        <RPY> 0 90 0 </RPY> <Pos> 0 0 0 </Pos> 
+    </Joint>
+
+    <Joint name="Joint_Y" refframe="Device_Base" type="Prismatic">
+        <RPY> 0 0 -90 </RPY> <Pos> 0 0 0</Pos> 
+    </Joint>
+
+    <Joint name="Joint_Z" refframe="Joint_X" type="Prismatic">
+       <RPY> 0 -90 0 </RPY> <Pos> 0 0 0 </Pos>
+    </Joint>	
+	
+	<Joint name="Joint_B" refframe="Joint_Y" type="Revolute">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0 </Pos> 
+    </Joint>
+
+    <Joint name="Joint_C" refframe="Joint_B" type="Revolute">
+       <RPY> 0 0 90 </RPY> <Pos> 0 0 0 </Pos>
+	</Joint>
+	   
+	<Frame name="TCP1" refframe="Joint_Z" type="EndEffector">
+      <RPY>0.00000 -0.00000 0.00000</RPY>
+      <Pos>0.0000000 0.0000000 0.0000000</Pos>
+    </Frame>
+
+	<Frame name="TCP2" refframe="Joint_C" type="EndEffector">
+      <RPY>0.00000 -0.00000 0.00000</RPY>
+      <Pos>0.0000000 0.0000000 0</Pos>
+    </Frame> 
+	
+	<PosLimit refjoint="Joint_Y" min="-321" max="148" />
+    <PosLimit refjoint="Joint_X" min="-277.0" max="390.0" />
+    <PosLimit refjoint="Joint_Z" min="0" max="300.0" />
+	<PosLimit refjoint="Joint_B" min="-90.0" max="90.0" />
+    <PosLimit refjoint="Joint_C" min="-360.0" max="360.0" />   
+	
+    <VelLimit refjoint="Joint_Y" max="1000" />
+    <VelLimit refjoint="Joint_X" max="1000" />
+    <VelLimit refjoint="Joint_Z" max="1000" /> 
+	<VelLimit refjoint="Joint_B" max="1000" />
+    <VelLimit refjoint="Joint_C" max="1000" />     
+
+
+
+    <Drawable name="BaseBody" refframe="Device_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/ORIGITECH/5Axis_XZ_YBC/Geometry/base.stl" unit="MM" color="100 256 0"/></Drawable>
+		
+    <Drawable name="SliderY" refframe="Joint_Y">
+        <RPY> 0 0 90 </RPY> <Pos> 0 0 0 </Pos>
+        <Polytope file="../RobotData/ORIGITECH/5Axis_XZ_YBC/Geometry/joint_y.stl" unit="MM" color="177 195 0"/></Drawable>
+	
+    <Drawable name="SliderX" refframe="Joint_X">
+        <RPY> 0 -90 0 </RPY> <Pos> 0 0 0 </Pos>
+        <Polytope file="../RobotData/ORIGITECH/5Axis_XZ_YBC/Geometry/joint_x.stl" unit="MM" color="177 195 0"/></Drawable>
+
+    <Drawable name="SliderZ" refframe="Joint_Z">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0 </Pos>
+        <Polytope file="../RobotData/ORIGITECH/5Axis_XZ_YBC/Geometry/joint_z.stl" unit="MM" color="177 195 0"/></Drawable>
+		
+  <Drawable name="jointGeo1" refframe="Joint_B">
+    <RPY> 0 0 90 </RPY> <Pos> 0 0 0 </Pos>
+    <Polytope file="../RobotData/ORIGITECH/5Axis_XZ_YBC/Geometry/joint_b.stl" unit="MM" color="0 210 9"/>
+    </Drawable>  
+  
+<Drawable name="jointGeo2" refframe="Joint_C">
+    <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+    <Polytope file="../RobotData/ORIGITECH/5Axis_XZ_YBC/Geometry/joint_c.stl" unit="MM" color="15 125 172"/>
+</Drawable>
+
+<CollisionSetup file="../RobotData/ORIGITECH/5Axis_XZ_YBC/CollisionSetup.xml" />
+
+<Q name="Home">0 0 100 0 0 </Q>
+
+</TreeDevice>

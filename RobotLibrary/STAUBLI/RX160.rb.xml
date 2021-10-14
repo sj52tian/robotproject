@@ -1,0 +1,66 @@
+<SerialDevice name="RX160">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">STAUBLI.lua</Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="550" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="-90" a="150" d="0" offset="-90" type="craig"></DHJoint>
+    
+	<DHJoint name="Joint3" alpha="0" a="825" d="0" offset="-90" type="craig"></DHJoint>
+    
+    <DHJoint name="Joint4" alpha="-90" a="0" d="625" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="-90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" >
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 110 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-160" max="160" />  
+    <PosLimit refjoint="Joint2" min="-137.5" max="137.5" />
+    <PosLimit refjoint="Joint3" min="-150" max="150" />
+    <PosLimit refjoint="Joint4" min="-270" max="270" />
+    <PosLimit refjoint="Joint5" min="-105" max="120" />
+    <PosLimit refjoint="Joint6" min="-270" max="270" />
+
+    <VelLimit refjoint="Joint1" max="200" />
+    <VelLimit refjoint="Joint2" max="200" />
+    <VelLimit refjoint="Joint3" max="255" /> 
+    <VelLimit refjoint="Joint4" max="315" />
+    <VelLimit refjoint="Joint5" max="360" />
+    <VelLimit refjoint="Joint6" max="870" />
+
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/STAUBLI/RX160/Geometry/base" unit="MM" color="240 170 0"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -550 </Pos>
+        <Polytope file="../RobotData/STAUBLI/RX160/Geometry/joint1" unit="MM" color="240 170 0"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 90 0 90 </RPY> <Pos> -550 -150 0 </Pos>
+        <Polytope file="../RobotData/STAUBLI/RX160/Geometry/joint2" unit="MM" color="240 170 0"/></Drawable>    
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> 180 0 90 </RPY> <Pos> 150 -1375 0</Pos>
+        <Polytope file="../RobotData/STAUBLI/RX160/Geometry/joint3" unit="MM" color="240 170 0"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> -180 0 0 </RPY> <Pos> 150 0 -2000 </Pos>
+        <Polytope file="../RobotData/STAUBLI/RX160/Geometry/joint4" unit="MM" color="240 170 0"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> 180 0 90 </RPY> <Pos> 150 -2000 0</Pos>  
+        <Polytope file="../RobotData/STAUBLI/RX160/Geometry/joint5" unit="MM" color="255 245 245"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> -180 0 0 </RPY> <Pos> 150 0 -2000</Pos>  
+        <Polytope file="../RobotData/STAUBLI/RX160/Geometry/joint6" unit="MM" color="0 0 0"/></Drawable>
+
+    <CollisionSetup file="../RobotData/STAUBLI/RX160/CollisionSetup.xml" />
+
+    <Q name="Home">0 0 1.57079 0 0 0</Q>
+
+</SerialDevice>

@@ -1,0 +1,11 @@
+<CollisionSetup>
+    <Exclude>
+
+	<FramePair first="Device_Base" second="Joint_Y"/>
+	<FramePair first="Device_Base" second="Joint_X"/>
+    <FramePair first="Joint_X" second="Joint_Z"/>
+	<FramePair first="Joint_Y" second="Joint_B"/>
+	<FramePair first="Joint_B" second="Joint_C"/>
+      
+    </Exclude>
+</CollisionSetup>

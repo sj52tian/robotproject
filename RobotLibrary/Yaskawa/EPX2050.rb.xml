@@ -1,0 +1,78 @@
+<!--Joint3正负限位会导致碰撞-->
+<!--Joint5正负转向有待确定，若修改，需校核Joint6位姿>
+<!--速度限制参数有待确定-->
+
+<SerialDevice name="EPX2050">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 600</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">Yaskawa.lua</Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="-90" a="300" d="0" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="180" a="850" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="-90" a="310" d="-850" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="120" a="0" d="90" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6"  alpha="60" a="0" d="105" offset="0" type="craig"></DHJoint>
+    
+    <Frame name="ToolMount" refframe="Joint6" > 
+        <RPY> -90 0 0 </RPY> <Pos> 0 0 0 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-90" max="90" />   
+    <PosLimit refjoint="Joint2" min="-50" max="100" />
+    <PosLimit refjoint="Joint3" min="-163" max="5" /> 
+    <PosLimit refjoint="Joint4" min="-360" max="360" />
+    <PosLimit refjoint="Joint5" min="-360" max="360" /> 
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <!--速度参数有待确定，以下不准确-->
+    <VelLimit refjoint="Joint1" max="230" />
+    <VelLimit refjoint="Joint2" max="225" />
+    <VelLimit refjoint="Joint3" max="230" /> 
+    <VelLimit refjoint="Joint4" max="430" />
+    <VelLimit refjoint="Joint5" max="430" />
+    <VelLimit refjoint="Joint6" max="630" />
+
+    <!--<AccLimit refjoint="Joint1" max="120" />
+    <AccLimit refjoint="Joint2" max="120" />
+    <AccLimit refjoint="Joint3" max="120" /> 
+    <AccLimit refjoint="Joint4" max="120" />
+    <AccLimit refjoint="Joint5" max="120" />
+    <AccLimit refjoint="Joint6" max="120" />-->
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -600</Pos>
+        <Polytope file="../RobotData/Yaskawa/EPX2050/Geometry/base" unit="MM" color="40 120 255"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -600 </Pos>
+        <Polytope file="../RobotData/Yaskawa/EPX2050/Geometry/joint1" unit="MM" color="40 120 255"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 90 0 90 </RPY> <Pos> -600 -300 0 </Pos>
+        <Polytope file="../RobotData/Yaskawa/EPX2050/Geometry/joint2" unit="MM" color="40 120 255"/></Drawable>    
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> -90 0 -90 </RPY> <Pos> -1450 300 0</Pos>
+        <Polytope file="../RobotData/Yaskawa/EPX2050/Geometry/joint3" unit="MM" color="40 120 255"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 90 90 0 </RPY> <Pos> 0 -1760 1150 </Pos>
+        <Polytope file="../RobotData/Yaskawa/EPX2050/Geometry/joint4" unit="MM" color="40 120 255"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> 90 -150 0 </RPY> <Pos> 0 1875.93 859.2 </Pos>  
+        <Polytope file="../RobotData/Yaskawa/EPX2050/Geometry/joint5" unit="MM" color="40 120 255"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 90 -90 0 </RPY> <Pos> 0 1682.1 -1300 </Pos>  
+        <Polytope file="../RobotData/Yaskawa/EPX2050/Geometry/joint6" unit="MM" color="0 43 54"/></Drawable>
+
+    <CollisionSetup file="../RobotData/Yaskawa/EPX2050/CollisionSetup.xml" />
+
+    <!--Q name="Home">0 0 -1.5707963  0 0 0</Q-->
+    <!-- <Q name="Home">0 0 0 0 0 0</Q>-->
+
+</SerialDevice>

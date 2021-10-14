@@ -1,0 +1,74 @@
+<SerialDevice name="UR10">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">UR.lua</Property>
+		<Property name="RobotType" desc="robot type">UR</Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="128" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="90" a="-0.0" d="0.0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="0" a="-612.7" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="0" a="-571.6" d="163.9" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="90" a="0.0" d="115.7" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="-90" a="0.0" d="92.2" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" >
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0.0 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-360" max="360" />   <!--Êý¾Ý²Î¿¼robotstudio-->
+    <PosLimit refjoint="Joint2" min="-360" max="360" />
+    <PosLimit refjoint="Joint3" min="-360" max="360" />
+    <PosLimit refjoint="Joint4" min="-360" max="360" />
+    <PosLimit refjoint="Joint5" min="-360" max="360" />
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <VelLimit refjoint="Joint1" max="200" />
+    <VelLimit refjoint="Joint2" max="200" />
+    <VelLimit refjoint="Joint3" max="260" /> 
+    <VelLimit refjoint="Joint4" max="360" />
+    <VelLimit refjoint="Joint5" max="360" />
+    <VelLimit refjoint="Joint6" max="450" />
+
+    <!--<AccLimit refjoint="Joint1" max="120" />
+    <AccLimit refjoint="Joint2" max="120" />
+    <AccLimit refjoint="Joint3" max="120" /> 
+    <AccLimit refjoint="Joint4" max="120" />
+    <AccLimit refjoint="Joint5" max="120" />
+    <AccLimit refjoint="Joint6" max="120" />-->
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0</Pos>
+        <Polytope file="../RobotData/UR/UR-10/Geometry/base" unit="MM" color="255 140 0"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> -0.0 0 -128</Pos>
+        <Polytope file="../RobotData/UR/UR-10/Geometry/joint1" unit="MM" color="255 140 0"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 90 0 -90 </RPY> <Pos> 128 -0.0 0 </Pos>
+        <Polytope file="../RobotData/UR/UR-10/Geometry/joint2" unit="MM" color="255 140 0"/></Drawable>    
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> 90 0 -90 </RPY> <Pos> 740.7 -0.0 -0.0 </Pos>
+        <Polytope file="../RobotData/UR/UR-10/Geometry/joint3" unit="MM" color="255 140 0"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 180 0 -90 </RPY> <Pos> 0 1312.3 -163.9</Pos>
+        <Polytope file="../RobotData/UR/UR-10/Geometry/joint4" unit="MM" color="255 140 0"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> 180 0 0 </RPY> <Pos> 0.0 -163.9 -1428 </Pos>  
+        <Polytope file="../RobotData/UR/UR-10/Geometry/joint5" unit="MM" color="255 140 0"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 0 180 90 </RPY> <Pos> 0.0 1428 -256.1 </Pos>  
+        <Polytope file="../RobotData/UR/UR-10/Geometry/joint6" unit="MM" color="169 169 169"/></Drawable>
+ 
+    <CollisionSetup file="../RobotData/UR/UR-10/CollisionSetup.xml" />
+
+    <!--Q name="Home">0 0 -1.5707963  0 0 0</Q-->
+    <Q name="Home">0 -1.570795 0 -1.570795 0 0</Q>
+
+</SerialDevice>

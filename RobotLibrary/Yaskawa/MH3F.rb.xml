@@ -1,0 +1,74 @@
+<!--Joint3正负限位参数会导致碰撞-->
+
+<SerialDevice name="MH3F">
+    <Frame name="Robot_Base" type="Movable">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 290</Pos> 
+        <Property name="ObjType"  desc="Object Type"> OBJ_TYPE_ROBOT </Property>
+		<Property name="PostProcess" desc=" lua">Yaskawa.lua</Property>
+    </Frame>
+
+
+    <DHJoint name="Joint1" alpha="0" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint2" alpha="-90" a="0" d="0" offset="-90" type="craig"></DHJoint>
+
+    <DHJoint name="Joint3" alpha="180" a="260" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint4" alpha="-90" a="30" d="-270" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint5"  alpha="90" a="0" d="0" offset="0" type="craig"></DHJoint>
+
+    <DHJoint name="Joint6" alpha="90" a="0" d="90" offset="0" type="craig"></DHJoint>
+
+    <Frame name="ToolMount" refframe="Joint6" > 
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 0 </Pos> 
+    </Frame>
+
+    <PosLimit refjoint="Joint1" min="-160" max="160" />   
+    <PosLimit refjoint="Joint2" min="-85" max="90" /> 
+    <PosLimit refjoint="Joint3" min="-105" max="260" /> <!--Joint3正负限位参数会导致碰撞-->
+    <PosLimit refjoint="Joint4" min="-170" max="170" />
+    <PosLimit refjoint="Joint5" min="-120" max="120" /> 
+    <PosLimit refjoint="Joint6" min="-360" max="360" />
+
+    <VelLimit refjoint="Joint1" max="200" />
+    <VelLimit refjoint="Joint2" max="150" />
+    <VelLimit refjoint="Joint3" max="190" /> 
+    <VelLimit refjoint="Joint4" max="300" />
+    <VelLimit refjoint="Joint5" max="300" />
+    <VelLimit refjoint="Joint6" max="420" />
+
+    <!--<AccLimit refjoint="Joint1" max="120" />
+    <AccLimit refjoint="Joint2" max="120" />
+    <AccLimit refjoint="Joint3" max="120" /> 
+    <AccLimit refjoint="Joint4" max="120" />
+    <AccLimit refjoint="Joint5" max="120" />
+    <AccLimit refjoint="Joint6" max="120" />-->
+
+    <Drawable name="BaseGeo" refframe="Robot_Base">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -290</Pos>
+        <Polytope file="../RobotData/Yaskawa/MH3F/Geometry/base" unit="MM" color="169 169 169"/></Drawable>
+    <Drawable name="J1Geo" refframe="Joint1">
+        <RPY> 0 0 0 </RPY> <Pos> 0 0 -290 </Pos>
+        <Polytope file="../RobotData/Yaskawa/MH3F/Geometry/joint1" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J2Geo" refframe="Joint2">
+        <RPY> 90 0 90 </RPY> <Pos> -290 0 0 </Pos>
+        <Polytope file="../RobotData/Yaskawa/MH3F/Geometry/joint2" unit="MM" color="245 245 245"/></Drawable>    
+    <Drawable name="J3Geo" refframe="Joint3">
+        <RPY> -90 0 -90 </RPY> <Pos> -550 0 0</Pos>
+        <Polytope file="../RobotData/Yaskawa/MH3F/Geometry/joint3" unit="MM" color="245 245 245"/></Drawable>  
+    <Drawable name="J4Geo" refframe="Joint4">
+        <RPY> 0 90 0 </RPY> <Pos> -580 0 270 </Pos>
+        <Polytope file="../RobotData/Yaskawa/MH3F/Geometry/joint4" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J5Geo" refframe="Joint5">
+        <RPY> -90 0 -90 </RPY> <Pos> -580 270 0 </Pos>  
+        <Polytope file="../RobotData/Yaskawa/MH3F/Geometry/joint5" unit="MM" color="245 245 245"/></Drawable>
+    <Drawable name="J6Geo" refframe="Joint6">
+        <RPY> 180 -90 0 </RPY> <Pos> -580 0 -360 </Pos>  
+        <Polytope file="../RobotData/Yaskawa/MH3F/Geometry/joint6" unit="MM" color="0 43 54"/></Drawable>
+
+    <CollisionSetup file="../RobotData/Yaskawa/MH3F/CollisionSetup.xml" />
+
+    <Q name="Home">0 0 0 0 0 0</Q>
+
+</SerialDevice>
